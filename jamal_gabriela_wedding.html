@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamal & Gabriela — December 18, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF7F2;
+    --terracotta: #B85C38;
+    --terracotta-light: #D4795A;
+    --terracotta-dark: #8C3E22;
+    --sage: #7A8C6E;
+    --sage-light: #A4B594;
+    --adobe: #C9A87C;
+    --adobe-light: #E0C9A0;
+    --deep-brown: #3D2B1F;
+    --mid-brown: #6B4A35;
+    --text-light: #8C7B6E;
+    --border: rgba(185, 155, 110, 0.3);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--deep-brown);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-monogram {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--terracotta);
+    letter-spacing: 0.1em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid-brown);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--warm-white);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(184,92,56,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(122,140,110,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 5%, rgba(201,168,124,0.1) 0%, transparent 60%);
+  }
+  .hero-ornament {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .hero-divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .hero-divider-line { flex: 1; height: 1px; background: var(--adobe); opacity: 0.4; max-width: 80px; }
+  .hero-divider-diamond {
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--deep-brown);
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .hero-names span { color: var(--terracotta); }
+  .hero-ampersand {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-style: italic;
+    color: var(--adobe);
+    display: block;
+    line-height: 1;
+    margin: 0.2rem 0;
+  }
+  .hero-date {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 2rem;
+    position: relative;
+  }
+  .hero-location {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--mid-brown);
+    margin-top: 0.5rem;
+    position: relative;
+  }
+  .countdown {
+    display: flex; gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+  .countdown-item { text-align: center; }
+  .countdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+  .countdown-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-arrow { width: 1px; height: 32px; background: var(--adobe); opacity: 0.5; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    opacity: 0.8;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--deep-brown);
+    margin-bottom: 1rem;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+  .section-intro {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--mid-brown);
+    max-width: 600px;
+  }
+  .ornamental-divider {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin: 3rem 0;
+  }
+  .ornamental-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .ornamental-divider-motif {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--adobe);
+  }
+
+  /* SCHEDULE */
+  #schedule { background: var(--warm-white); }
+  .schedule-grid { max-width: 700px; margin: 0 auto; }
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .schedule-item::before {
+    content: '';
+    position: absolute;
+    left: 115px; top: 28px; bottom: -2.5rem;
+    width: 1px;
+    background: var(--border);
+  }
+  .schedule-item:last-child::before { display: none; }
+  .schedule-time {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--terracotta);
+    font-weight: 500;
+    padding-top: 0.25rem;
+    text-align: right;
+  }
+  .schedule-dot {
+    position: absolute;
+    left: 108px; top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--warm-white);
+    border: 2px solid var(--terracotta);
+  }
+  .schedule-dot.filled { background: var(--terracotta); }
+  .schedule-event-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--deep-brown);
+    margin-bottom: 0.25rem;
+  }
+  .schedule-event-detail {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+
+  /* TRAVEL */
+  #travel { background: var(--cream); }
+  .travel-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin-top: 3rem;
+  }
+  .travel-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .travel-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--adobe));
+  }
+  .travel-card-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+  .travel-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep-brown);
+    margin-bottom: 0.5rem;
+  }
+  .travel-card-body {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--mid-brown);
+  }
+  .travel-card-body strong {
+    font-weight: 500;
+    color: var(--terracotta);
+    font-style: normal;
+  }
+
+  /* GALLERY */
+  #gallery { background: var(--warm-white); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    max-width: 900px;
+    margin-top: 3rem;
+  }
+  .gallery-cell {
+    background: var(--adobe-light);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .gallery-cell.tall { grid-row: span 2; }
+  .gallery-cell.wide { grid-column: span 2; }
+  .gallery-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    min-height: 160px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    color: var(--mid-brown);
+    opacity: 0.45;
+  }
+  .gallery-placeholder-icon { font-size: 1.5rem; }
+  .gallery-placeholder-text { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .gallery-upload-note {
+    margin-top: 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-light);
+  }
+
+  /* RSVP */
+  #rsvp { background: var(--deep-brown); color: var(--cream); }
+  #rsvp .section-tag { color: var(--adobe-light); }
+  #rsvp .section-title { color: var(--cream); }
+  #rsvp .section-title em { color: var(--terracotta-light); }
+  #rsvp .section-intro { color: var(--adobe-light); }
+  .rsvp-form { max-width: 560px; margin-top: 3rem; }
+  .form-row { margin-bottom: 1.5rem; }
+  .form-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--adobe);
+    margin-bottom: 0.5rem;
+  }
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,124,0.3);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.95rem;
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input::placeholder { color: rgba(201,168,124,0.4); }
+  .form-input:focus { border-color: var(--adobe); }
+  select.form-input option { background: var(--deep-brown); color: var(--cream); }
+  .rsvp-radio-group { display: flex; gap: 1rem; }
+  .rsvp-radio-label {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0.75rem;
+    border: 1px solid rgba(201,168,124,0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--adobe-light);
+    transition: all 0.2s;
+  }
+  .rsvp-radio-label input { display: none; }
+  .rsvp-radio-label.selected {
+    border-color: var(--terracotta-light);
+    background: rgba(184,92,56,0.15);
+    color: var(--terracotta-light);
+  }
+  .rsvp-submit {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background: var(--terracotta);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .rsvp-submit:hover { background: var(--terracotta-dark); }
+  .rsvp-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--adobe-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #2A1E15;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-light);
+  }
+  .footer-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--adobe);
+    margin-bottom: 0.5rem;
+  }
+  .footer-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 1.5rem;
+  }
+  .footer-note {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.45;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .nav-links { gap: 1rem; }
+    .countdown { gap: 1rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-cell.tall { grid-row: span 1; }
+    .gallery-cell.wide { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-monogram">J & G</div>
+  <ul class="nav-links">
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#travel">Travel</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament">We're Getting Married</div>
+  <div class="hero-divider">
+    <div class="hero-divider-line"></div>
+    <div class="hero-divider-diamond"></div>
+    <div class="hero-divider-line"></div>
+  </div>
+  <h1 class="hero-names">
+    Jamal<br>
+    <span class="hero-ampersand">&</span>
+    Gabriela
+  </h1>
+  <p class="hero-date">December 18, 2026</p>
+  <p class="hero-location">A Hacienda Celebration</p>
+  <div class="countdown">
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-days">—</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-hours">—</div>
+      <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-mins">—</div>
+      <div class="countdown-label">Minutes</div>
+    </div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-secs">—</div>
+      <div class="countdown-label">Seconds</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-arrow"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="section-inner fade-in">
+    <div class="section-tag">The Big Day</div>
+    <h2 class="section-title">Day-of <em>Schedule</em></h2>
+    <p class="section-intro">Every moment of our celebration, thoughtfully arranged for you.</p>
+    <div class="ornamental-divider">
+      <div class="ornamental-divider-line"></div>
+      <div class="ornamental-divider-motif">✦</div>
+      <div class="ornamental-divider-line"></div>
+    </div>
+    <div class="schedule-grid">
+      <div class="schedule-item">
+        <div class="schedule-time">3:00 PM</div>
+        <div class="schedule-dot filled"></div>
+        <div>
+          <div class="schedule-event-name">Guest Arrival & Welcome</div>
+          <div class="schedule-event-detail">Mezcal cocktails, music, and the courtyard in full bloom</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">4:00 PM</div>
+        <div class="schedule-dot"></div>
+        <div>
+          <div class="schedule-event-name">Ceremony</div>
+          <div class="schedule-event-detail">Under the arched portal, surrounded by family and friends</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">5:00 PM</div>
+        <div class="schedule-dot"></div>
+        <div>
+          <div class="schedule-event-name">Cocktail Hour</div>
+          <div class="schedule-event-detail">Passed bites, live music, golden hour in the garden</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">6:30 PM</div>
+        <div class="schedule-dot"></div>
+        <div>
+          <div class="schedule-event-name">Dinner & Toasts</div>
+          <div class="schedule-event-detail">Seated dinner, heartfelt words, and a whole lot of laughter</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">8:00 PM</div>
+        <div class="schedule-dot"></div>
+        <div>
+          <div class="schedule-event-name">First Dance & Celebration</div>
+          <div class="schedule-event-detail">Dancing under the stars until the night runs out</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:00 PM</div>
+        <div class="schedule-dot"></div>
+        <div>
+          <div class="schedule-event-name">Last Dance & Send-Off</div>
+          <div class="schedule-event-detail">One final song, sparklers, and a sweet goodbye</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAVEL -->
+<section id="travel">
+  <div class="section-inner fade-in">
+    <div class="section-tag">Getting Here</div>
+    <h2 class="section-title">Travel & <em>Accommodations</em></h2>
+    <p class="section-intro">We want getting here to feel as easy as being here. A few things to know:</p>
+    <div class="travel-cards">
+      <div class="travel-card">
+        <div class="travel-card-icon">✈️</div>
+        <div class="travel-card-title">Nearest Airport</div>
+        <div class="travel-card-body">
+          <strong>McAllen Miller International (MFE)</strong> is the closest airport — just a short drive away. Fly into <strong>Laredo (LRD)</strong> or <strong>Brownsville (BRO)</strong> for more options. We recommend arriving by Dec 17.
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-card-icon">🏨</div>
+        <div class="travel-card-title">Hotel Block</div>
+        <div class="travel-card-body">
+          We've reserved a room block at <strong>[Hotel Name TBD]</strong> for our guests. Use code <strong>BUSTOS26</strong> when booking for a discounted rate. Block expires <strong>November 15, 2026.</strong>
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-card-icon">🚗</div>
+        <div class="travel-card-title">Getting Around</div>
+        <div class="travel-card-body">
+          We recommend renting a car for the weekend. Uber and Lyft are available in the area. <strong>Shuttle service</strong> from the hotel to the venue will be provided — details to follow.
+        </div>
+      </div>
+      <div class="travel-card">
+        <div class="travel-card-icon">🌡️</div>
+        <div class="travel-card-title">December in the Rio Grande Valley</div>
+        <div class="travel-card-body">
+          Expect mild evenings around <strong>55–65°F</strong>. The ceremony and reception are partially outdoors — bring a light layer for after dark.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner fade-in">
+    <div class="section-tag">Us</div>
+    <h2 class="section-title">Photo <em>Gallery</em></h2>
+    <p class="section-intro">A few of our favorite moments together — more to come.</p>
+    <div class="gallery-grid">
+      <div class="gallery-cell tall">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">◻</div>
+          <div class="gallery-placeholder-text">Photo</div>
+        </div>
+      </div>
+      <div class="gallery-cell">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">◻</div>
+          <div class="gallery-placeholder-text">Photo</div>
+        </div>
+      </div>
+      <div class="gallery-cell">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">◻</div>
+          <div class="gallery-placeholder-text">Photo</div>
+        </div>
+      </div>
+      <div class="gallery-cell wide">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">◻</div>
+          <div class="gallery-placeholder-text">Photo</div>
+        </div>
+      </div>
+      <div class="gallery-cell">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">◻</div>
+          <div class="gallery-placeholder-text">Photo</div>
+        </div>
+      </div>
+    </div>
+    <p class="gallery-upload-note">To add photos, replace the placeholder divs with &lt;img src="your-photo.jpg"&gt; tags.</p>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-inner fade-in">
+    <div class="section-tag">Join Us</div>
+    <h2 class="section-title">Kindly <em>RSVP</em></h2>
+    <p class="section-intro">Please respond by November 1, 2026. We can't wait to celebrate with you.</p>
+    <div class="rsvp-form" id="rsvp-form-wrap">
+      <div class="form-row">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your name" id="rsvp-name" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="your@email.com" id="rsvp-email" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Will you be attending?</label>
+        <div class="rsvp-radio-group">
+          <label class="rsvp-radio-label" id="label-yes">
+            <input type="radio" name="attendance" value="yes"> Joyfully accepts
+          </label>
+          <label class="rsvp-radio-label" id="label-no">
+            <input type="radio" name="attendance" value="no"> Regretfully declines
+          </label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Number of guests (including yourself)</label>
+        <select class="form-input" id="rsvp-guests">
+          <option value="">Select</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Dietary restrictions or notes</label>
+        <input class="form-input" type="text" placeholder="Optional" id="rsvp-notes" />
+      </div>
+      <button class="rsvp-submit" onclick="submitRsvp()">Send My RSVP</button>
+    </div>
+    <div class="rsvp-success" id="rsvp-success">
+      ¡Qué alegría! We'll see you in December. 🌵
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-names">Jamal & Gabriela</div>
+  <div class="footer-date">December 18, 2026</div>
+  <div class="footer-note">Made with love, somewhere in the Rio Grande Valley.</div>
+</footer>
+
+<script>
+  function updateCountdown() {
+    var wedding = new Date('2026-12-18T16:00:00');
+    var now = new Date();
+    var diff = wedding - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+    document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = Math.floor((diff % 86400000) / 3600000);
+    document.getElementById('cd-mins').textContent = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('cd-secs').textContent = Math.floor((diff % 60000) / 1000);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  document.querySelectorAll('input[name="attendance"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      document.getElementById('label-yes').classList.remove('selected');
+      document.getElementById('label-no').classList.remove('selected');
+      if (this.value === 'yes') document.getElementById('label-yes').classList.add('selected');
+      else document.getElementById('label-no').classList.add('selected');
+    });
+  });
+
+  function submitRsvp() {
+    var name = document.getElementById('rsvp-name').value.trim();
+    var email = document.getElementById('rsvp-email').value.trim();
+    var attendance = document.querySelector('input[name="attendance"]:checked');
+    if (!name || !email || !attendance) {
+      alert('Please fill in your name, email, and attendance.');
+      return;
+    }
+    document.getElementById('rsvp-form-wrap').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
